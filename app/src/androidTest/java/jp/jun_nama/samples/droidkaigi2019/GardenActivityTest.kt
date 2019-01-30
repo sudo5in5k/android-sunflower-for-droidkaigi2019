@@ -49,115 +49,110 @@ class GardenActivityTest {
     @Test
     fun gardenActivityTest() {
         goPlantList()
-
         showPlantDetail("Avocado")
-
         addToMyGarden()
-
         goBackPlantList()
-
         goBackMyGarden()
-
         assertPlanted("Avocado")
     }
+}
 
-    fun assertPlanted(plantName: String) {
-        val textView = onView(
-                allOf(withId(R.id.plant_date), withText(startsWith(plantName)),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.garden_list),
-                                        0),
-                                1),
-                        isDisplayed()))
-        textView.check(matches(withText(startsWith(plantName))))
-    }
+fun assertPlanted(plantName: String) {
+    val textView = onView(
+            allOf(withId(R.id.plant_date), withText(startsWith(plantName)),
+                    childAtPosition(
+                            childAtPosition(
+                                    withId(R.id.garden_list),
+                                    0),
+                            1),
+                    isDisplayed()))
+    textView.check(matches(withText(startsWith(plantName))))
+}
 
-    fun addToMyGarden() {
-        val floatingActionButton = onView(
-                allOf(withId(R.id.fab),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.garden_nav_fragment),
-                                        0),
-                                2),
-                        isDisplayed()))
-        floatingActionButton.perform(click())
-    }
+fun addToMyGarden() {
+    val floatingActionButton = onView(
+            allOf(withId(R.id.fab),
+                    childAtPosition(
+                            childAtPosition(
+                                    withId(R.id.garden_nav_fragment),
+                                    0),
+                            2),
+                    isDisplayed()))
+    floatingActionButton.perform(click())
+}
 
-    fun showPlantDetail(plantName: String) {
-        val recyclerView = onView(
-                allOf(withId(R.id.plant_list),
-                        childAtPosition(
-                                withId(R.id.garden_nav_fragment),
-                                0),
-                        isDisplayed()))
-        recyclerView.perform(actionOnItem<RecyclerView.ViewHolder>(hasDescendant(withText(plantName)), click()))
-    }
+fun showPlantDetail(plantName: String) {
+    val recyclerView = onView(
+            allOf(withId(R.id.plant_list),
+                    childAtPosition(
+                            withId(R.id.garden_nav_fragment),
+                            0),
+                    isDisplayed()))
+    recyclerView.perform(actionOnItem<RecyclerView.ViewHolder>(hasDescendant(withText(plantName)), click()))
+}
 
-    fun goPlantList() {
-        val appCompatImageButton = onView(
-                allOf(withContentDescription("上へ移動"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withId(R.id.appbar),
-                                                0)),
-                                1),
-                        isDisplayed()))
-        appCompatImageButton.perform(click())
+fun goPlantList() {
+    val appCompatImageButton = onView(
+            allOf(withContentDescription("上へ移動"),
+                    childAtPosition(
+                            allOf(withId(R.id.toolbar),
+                                    childAtPosition(
+                                            withId(R.id.appbar),
+                                            0)),
+                            1),
+                    isDisplayed()))
+    appCompatImageButton.perform(click())
 
-        val navigationMenuItemView = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.design_navigation_view),
-                                childAtPosition(
-                                        withId(R.id.navigation_view),
-                                        0)),
-                        2),
-                        isDisplayed()))
-        navigationMenuItemView.perform(click())
-    }
+    val navigationMenuItemView = onView(
+            allOf(childAtPosition(
+                    allOf(withId(R.id.design_navigation_view),
+                            childAtPosition(
+                                    withId(R.id.navigation_view),
+                                    0)),
+                    2),
+                    isDisplayed()))
+    navigationMenuItemView.perform(click())
+}
 
-    fun goBackPlantList() {
-        val appCompatImageButton2 = onView(
-                allOf(withContentDescription("上へ移動"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withId(R.id.appbar),
-                                                0)),
-                                1),
-                        isDisplayed()))
-        appCompatImageButton2.perform(click())
-    }
+fun goBackPlantList() {
+    val appCompatImageButton2 = onView(
+            allOf(withContentDescription("上へ移動"),
+                    childAtPosition(
+                            allOf(withId(R.id.toolbar),
+                                    childAtPosition(
+                                            withId(R.id.appbar),
+                                            0)),
+                            1),
+                    isDisplayed()))
+    appCompatImageButton2.perform(click())
+}
 
-    fun goBackMyGarden() {
-        val appCompatImageButton3 = onView(
-                allOf(withContentDescription("上へ移動"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withId(R.id.appbar),
-                                                0)),
-                                1),
-                        isDisplayed()))
-        appCompatImageButton3.perform(click())
-    }
+fun goBackMyGarden() {
+    val appCompatImageButton3 = onView(
+            allOf(withContentDescription("上へ移動"),
+                    childAtPosition(
+                            allOf(withId(R.id.toolbar),
+                                    childAtPosition(
+                                            withId(R.id.appbar),
+                                            0)),
+                            1),
+                    isDisplayed()))
+    appCompatImageButton3.perform(click())
+}
 
-    private fun childAtPosition(
-            parentMatcher: Matcher<View>, position: Int): Matcher<View> {
+private fun childAtPosition(
+        parentMatcher: Matcher<View>, position: Int): Matcher<View> {
 
-        return object : TypeSafeMatcher<View>() {
-            override fun describeTo(description: Description) {
-                description.appendText("Child at position $position in parent ")
-                parentMatcher.describeTo(description)
-            }
+    return object : TypeSafeMatcher<View>() {
+        override fun describeTo(description: Description) {
+            description.appendText("Child at position $position in parent ")
+            parentMatcher.describeTo(description)
+        }
 
-            public override fun matchesSafely(view: View): Boolean {
-                val parent = view.parent
-                return parent is ViewGroup && parentMatcher.matches(parent)
-                        && view == parent.getChildAt(position)
-            }
+        public override fun matchesSafely(view: View): Boolean {
+            val parent = view.parent
+            return parent is ViewGroup && parentMatcher.matches(parent)
+                    && view == parent.getChildAt(position)
         }
     }
 }
