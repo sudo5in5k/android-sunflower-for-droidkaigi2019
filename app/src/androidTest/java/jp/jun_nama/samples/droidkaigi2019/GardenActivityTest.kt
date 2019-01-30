@@ -19,9 +19,11 @@ package jp.jun_nama.samples.droidkaigi2019
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItem
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -31,6 +33,7 @@ import com.google.samples.apps.sunflower.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.startsWith
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
@@ -66,15 +69,13 @@ class GardenActivityTest {
                         isDisplayed()))
         navigationMenuItemView.perform(click())
 
-        val constraintLayout = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.plant_list),
-                                childAtPosition(
-                                        withId(R.id.garden_nav_fragment),
-                                        0)),
-                        1),
+        val recyclerView = onView(
+                allOf(withId(R.id.plant_list),
+                        childAtPosition(
+                                withId(R.id.garden_nav_fragment),
+                                0),
                         isDisplayed()))
-        constraintLayout.perform(click())
+        recyclerView.perform(actionOnItem<RecyclerView.ViewHolder>(hasDescendant(withText("Avocado")), click()))
 
         val floatingActionButton = onView(
                 allOf(withId(R.id.fab),
@@ -109,14 +110,14 @@ class GardenActivityTest {
         appCompatImageButton3.perform(click())
 
         val textView = onView(
-                allOf(withId(R.id.plant_date), withText("Avocado planted on Jan 30, 2019"),
+                allOf(withId(R.id.plant_date), withText(startsWith("Avocado")),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.garden_list),
                                         0),
                                 1),
                         isDisplayed()))
-        textView.check(matches(withText("Avocado planted on Jan 30, 2019")))
+        textView.check(matches(withText(startsWith("Avocado"))))
     }
 
     private fun childAtPosition(
