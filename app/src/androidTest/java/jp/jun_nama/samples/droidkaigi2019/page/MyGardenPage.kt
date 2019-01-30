@@ -24,7 +24,7 @@ import com.google.samples.apps.sunflower.R
 import org.hamcrest.Matchers
 object MyGardenPage {
 
-    fun assertPlanted(plantName: String) {
+    fun assertPlanted(plantName: String): MyGardenPage {
         val textView = Espresso.onView(
                 Matchers.allOf(ViewMatchers.withId(R.id.plant_date), ViewMatchers.withText(Matchers.startsWith(plantName)),
                         childAtPosition(
@@ -34,9 +34,10 @@ object MyGardenPage {
                                 1),
                         ViewMatchers.isDisplayed()))
         textView.check(ViewAssertions.matches(ViewMatchers.withText(Matchers.startsWith(plantName))))
+        return MyGardenPage
     }
 
-    fun goPlantList() {
+    fun goPlantList(): PlantListPage {
         val appCompatImageButton = Espresso.onView(
                 Matchers.allOf(ViewMatchers.withContentDescription("上へ移動"),
                         childAtPosition(
@@ -57,5 +58,6 @@ object MyGardenPage {
                         2),
                         ViewMatchers.isDisplayed()))
         navigationMenuItemView.perform(ViewActions.click())
+        return PlantListPage
     }
 }

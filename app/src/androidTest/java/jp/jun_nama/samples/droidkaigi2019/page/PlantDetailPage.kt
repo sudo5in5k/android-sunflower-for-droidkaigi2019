@@ -23,7 +23,7 @@ import com.google.samples.apps.sunflower.R
 import org.hamcrest.Matchers
 
 object PlantDetailPage {
-    fun addToMyGarden() {
+    fun addToMyGarden(): PlantDetailPage {
         val floatingActionButton = Espresso.onView(
                 Matchers.allOf(ViewMatchers.withId(R.id.fab),
                         childAtPosition(
@@ -33,9 +33,10 @@ object PlantDetailPage {
                                 2),
                         ViewMatchers.isDisplayed()))
         floatingActionButton.perform(ViewActions.click())
+        return PlantDetailPage
     }
 
-    fun goBackPlantList() {
+    fun goBackPlantList(): PlantListPage {
         val appCompatImageButton2 = Espresso.onView(
                 Matchers.allOf(ViewMatchers.withContentDescription("上へ移動"),
                         childAtPosition(
@@ -46,5 +47,6 @@ object PlantDetailPage {
                                 1),
                         ViewMatchers.isDisplayed()))
         appCompatImageButton2.perform(ViewActions.click())
+        return PlantListPage
     }
 }

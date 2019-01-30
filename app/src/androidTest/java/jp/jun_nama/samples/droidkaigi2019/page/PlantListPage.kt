@@ -25,7 +25,7 @@ import com.google.samples.apps.sunflower.R
 import org.hamcrest.Matchers
 
 object PlantListPage {
-    fun showPlantDetail(plantName: String) {
+    fun showPlantDetail(plantName: String): PlantDetailPage {
         val recyclerView = Espresso.onView(
                 Matchers.allOf(ViewMatchers.withId(R.id.plant_list),
                         childAtPosition(
@@ -33,9 +33,10 @@ object PlantListPage {
                                 0),
                         ViewMatchers.isDisplayed()))
         recyclerView.perform(RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(ViewMatchers.hasDescendant(ViewMatchers.withText(plantName)), ViewActions.click()))
+        return PlantDetailPage
     }
 
-    fun goBackMyGarden() {
+    fun goBackMyGarden(): MyGardenPage {
         val appCompatImageButton3 = Espresso.onView(
                 Matchers.allOf(ViewMatchers.withContentDescription("上へ移動"),
                         childAtPosition(
@@ -46,5 +47,6 @@ object PlantListPage {
                                 1),
                         ViewMatchers.isDisplayed()))
         appCompatImageButton3.perform(ViewActions.click())
+        return MyGardenPage
     }
 }

@@ -21,6 +21,7 @@ import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.google.samples.apps.sunflower.GardenActivity
+import jp.jun_nama.samples.droidkaigi2019.page.MyGardenPage
 import jp.jun_nama.samples.droidkaigi2019.page.MyGardenPage.assertPlanted
 import jp.jun_nama.samples.droidkaigi2019.page.MyGardenPage.goPlantList
 import jp.jun_nama.samples.droidkaigi2019.page.PlantDetailPage.addToMyGarden
@@ -40,12 +41,12 @@ class GardenActivityTest {
 
     @Test
     fun gardenActivityTest() {
-        goPlantList()
-        showPlantDetail("Avocado")
-        addToMyGarden()
-        goBackPlantList()
-        goBackMyGarden()
-        assertPlanted("Avocado")
+        MyGardenPage.goPlantList()
+                .showPlantDetail("Sunflower")
+                .addToMyGarden()
+                .goBackPlantList()
+                .goBackMyGarden()
+                .assertPlanted("Sunflower")
     }
 }
 
