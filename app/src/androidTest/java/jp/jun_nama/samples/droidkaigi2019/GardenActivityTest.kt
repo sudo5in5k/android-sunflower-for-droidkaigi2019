@@ -48,6 +48,54 @@ class GardenActivityTest {
 
     @Test
     fun gardenActivityTest() {
+        goPlantList()
+
+        showPlantDetail("Avocado")
+
+        addToMyGarden()
+
+        goBackPlantList()
+
+        goBackMyGarden()
+
+        assertPlanted("Avocado")
+    }
+
+    fun assertPlanted(plantName: String) {
+        val textView = onView(
+                allOf(withId(R.id.plant_date), withText(startsWith(plantName)),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.garden_list),
+                                        0),
+                                1),
+                        isDisplayed()))
+        textView.check(matches(withText(startsWith(plantName))))
+    }
+
+    fun addToMyGarden() {
+        val floatingActionButton = onView(
+                allOf(withId(R.id.fab),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.garden_nav_fragment),
+                                        0),
+                                2),
+                        isDisplayed()))
+        floatingActionButton.perform(click())
+    }
+
+    fun showPlantDetail(plantName: String) {
+        val recyclerView = onView(
+                allOf(withId(R.id.plant_list),
+                        childAtPosition(
+                                withId(R.id.garden_nav_fragment),
+                                0),
+                        isDisplayed()))
+        recyclerView.perform(actionOnItem<RecyclerView.ViewHolder>(hasDescendant(withText(plantName)), click()))
+    }
+
+    fun goPlantList() {
         val appCompatImageButton = onView(
                 allOf(withContentDescription("上へ移動"),
                         childAtPosition(
@@ -68,25 +116,9 @@ class GardenActivityTest {
                         2),
                         isDisplayed()))
         navigationMenuItemView.perform(click())
+    }
 
-        val recyclerView = onView(
-                allOf(withId(R.id.plant_list),
-                        childAtPosition(
-                                withId(R.id.garden_nav_fragment),
-                                0),
-                        isDisplayed()))
-        recyclerView.perform(actionOnItem<RecyclerView.ViewHolder>(hasDescendant(withText("Avocado")), click()))
-
-        val floatingActionButton = onView(
-                allOf(withId(R.id.fab),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.garden_nav_fragment),
-                                        0),
-                                2),
-                        isDisplayed()))
-        floatingActionButton.perform(click())
-
+    fun goBackPlantList() {
         val appCompatImageButton2 = onView(
                 allOf(withContentDescription("上へ移動"),
                         childAtPosition(
@@ -97,7 +129,9 @@ class GardenActivityTest {
                                 1),
                         isDisplayed()))
         appCompatImageButton2.perform(click())
+    }
 
+    fun goBackMyGarden() {
         val appCompatImageButton3 = onView(
                 allOf(withContentDescription("上へ移動"),
                         childAtPosition(
@@ -108,16 +142,6 @@ class GardenActivityTest {
                                 1),
                         isDisplayed()))
         appCompatImageButton3.perform(click())
-
-        val textView = onView(
-                allOf(withId(R.id.plant_date), withText(startsWith("Avocado")),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.garden_list),
-                                        0),
-                                1),
-                        isDisplayed()))
-        textView.check(matches(withText(startsWith("Avocado"))))
     }
 
     private fun childAtPosition(
