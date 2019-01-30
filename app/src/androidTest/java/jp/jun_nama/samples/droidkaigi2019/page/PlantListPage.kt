@@ -24,25 +24,27 @@ import androidx.test.espresso.matcher.ViewMatchers
 import com.google.samples.apps.sunflower.R
 import org.hamcrest.Matchers
 
-fun showPlantDetail(plantName: String) {
-    val recyclerView = Espresso.onView(
-            Matchers.allOf(ViewMatchers.withId(R.id.plant_list),
-                    childAtPosition(
-                            ViewMatchers.withId(R.id.garden_nav_fragment),
-                            0),
-                    ViewMatchers.isDisplayed()))
-    recyclerView.perform(RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(ViewMatchers.hasDescendant(ViewMatchers.withText(plantName)), ViewActions.click()))
-}
+object PlantListPage {
+    fun showPlantDetail(plantName: String) {
+        val recyclerView = Espresso.onView(
+                Matchers.allOf(ViewMatchers.withId(R.id.plant_list),
+                        childAtPosition(
+                                ViewMatchers.withId(R.id.garden_nav_fragment),
+                                0),
+                        ViewMatchers.isDisplayed()))
+        recyclerView.perform(RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(ViewMatchers.hasDescendant(ViewMatchers.withText(plantName)), ViewActions.click()))
+    }
 
-fun goBackMyGarden() {
-    val appCompatImageButton3 = Espresso.onView(
-            Matchers.allOf(ViewMatchers.withContentDescription("上へ移動"),
-                    childAtPosition(
-                            Matchers.allOf(ViewMatchers.withId(R.id.toolbar),
-                                    childAtPosition(
-                                            ViewMatchers.withId(R.id.appbar),
-                                            0)),
-                            1),
-                    ViewMatchers.isDisplayed()))
-    appCompatImageButton3.perform(ViewActions.click())
+    fun goBackMyGarden() {
+        val appCompatImageButton3 = Espresso.onView(
+                Matchers.allOf(ViewMatchers.withContentDescription("上へ移動"),
+                        childAtPosition(
+                                Matchers.allOf(ViewMatchers.withId(R.id.toolbar),
+                                        childAtPosition(
+                                                ViewMatchers.withId(R.id.appbar),
+                                                0)),
+                                1),
+                        ViewMatchers.isDisplayed()))
+        appCompatImageButton3.perform(ViewActions.click())
+    }
 }

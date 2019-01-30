@@ -21,7 +21,12 @@ import androidx.test.ext.junit.rules.activityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.google.samples.apps.sunflower.GardenActivity
-import jp.jun_nama.samples.droidkaigi2019.page.*
+import jp.jun_nama.samples.droidkaigi2019.page.MyGardenPage.assertPlanted
+import jp.jun_nama.samples.droidkaigi2019.page.MyGardenPage.goPlantList
+import jp.jun_nama.samples.droidkaigi2019.page.PlantDetailPage.addToMyGarden
+import jp.jun_nama.samples.droidkaigi2019.page.PlantDetailPage.goBackPlantList
+import jp.jun_nama.samples.droidkaigi2019.page.PlantListPage.goBackMyGarden
+import jp.jun_nama.samples.droidkaigi2019.page.PlantListPage.showPlantDetail
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
