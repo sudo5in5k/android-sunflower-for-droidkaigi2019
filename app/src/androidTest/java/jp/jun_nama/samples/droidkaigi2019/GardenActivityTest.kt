@@ -45,8 +45,12 @@ class GardenActivityTest {
                 .showPlantDetail("Sunflower")
                 .addToMyGarden()
                 .goBackPlantList()
+                .showPlantDetail("Avocado")
+                .addToMyGarden()
+                .goBackPlantList()
                 .goBackMyGarden()
                 .assertPlanted("Sunflower")
+                .assertPlanted("Avocado")
     }
 }
 

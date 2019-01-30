@@ -16,24 +16,25 @@
 
 package jp.jun_nama.samples.droidkaigi2019.page
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.scrollTo
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.google.samples.apps.sunflower.R
 import org.hamcrest.Matchers
+import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.startsWith
+
 object MyGardenPage {
 
     fun assertPlanted(plantName: String): MyGardenPage {
-        val textView = Espresso.onView(
-                Matchers.allOf(ViewMatchers.withId(R.id.plant_date), ViewMatchers.withText(Matchers.startsWith(plantName)),
-                        childAtPosition(
-                                childAtPosition(
-                                        ViewMatchers.withId(R.id.garden_list),
-                                        0),
-                                1),
-                        ViewMatchers.isDisplayed()))
-        textView.check(ViewAssertions.matches(ViewMatchers.withText(Matchers.startsWith(plantName))))
+        val recyclerView = onView(withId(R.id.garden_list))
+        recyclerView.perform(scrollTo<RecyclerView.ViewHolder>(hasDescendant(withText(startsWith(plantName)))))
+        onView(allOf(withId(R.id.plant_date), withText(startsWith(plantName)))).check(matches((isDisplayed())))
         return MyGardenPage
     }
 
