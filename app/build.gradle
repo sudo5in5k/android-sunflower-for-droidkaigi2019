@@ -30,6 +30,7 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
         versionCode 1
         versionName "0.1.6"
         vectorDrawables.useSupportLibrary true
@@ -44,6 +45,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+     }
 }
 
 dependencies {
@@ -64,12 +77,19 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+    debugImplementation "androidx.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
+    debugImplementation "androidx.test.espresso.idling:idling-concurrent:$rootProject.espressoVersion"
 
     // Testing dependencies
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.runnerVersion"
+    androidTestImplementation "androidx.test:core-ktx:$rootProject.testCoreVersion"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$rootProject.testExtJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
     androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
+    androidTestUtil "androidx.test:orchestrator:$rootProject.testOrchestratorVersion"
     testImplementation "junit:junit:$rootProject.junitVersion"
 }

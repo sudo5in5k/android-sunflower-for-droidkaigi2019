@@ -26,7 +26,7 @@ buildscript {
         constraintLayoutVersion = '2.0.0-alpha3'
         coreTestingVersion = '2.0.0'
         coroutinesVersion = "1.0.1"
-        espressoVersion = '3.1.0-alpha4'
+        espressoVersion = '3.1.1'
         glideVersion = '4.8.0'
         gradleVersion = '3.3.0'
         gsonVersion = '2.8.2'
@@ -39,9 +39,13 @@ buildscript {
         navigationVersion = '1.0.0-alpha09'
         recyclerViewVersion = '1.0.0'
         roomVersion = '2.1.0-alpha03'
-        runnerVersion = '1.0.1'
+        rulesVersion = '1.1.1'
+        runnerVersion = '1.1.1'
         supportLibraryVersion = '1.0.2'
-        uiAutomatorVersion = '2.2.0-alpha4'
+        testCoreVersion = '1.1.0'
+        testExtJunitVersion = '1.1.0'
+        testOrchestratorVersion = '1.1.1'
+        uiAutomatorVersion = '2.2.0'
         workVersion = '1.0.0-beta01'
     }
 
