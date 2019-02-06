@@ -11,14 +11,24 @@ Android Sunflower付属の、オリジナルのREADMEは[README.orig.md](README.
 ## 動作確認環境
 
 - Android Studio 3.3
-- 言語設定を日本語にしたAndroid 8.0が稼動する端末
+- 言語設定を日本語にしたAndroid 8.0が稼動する端末・エミュレータ
 
 # ブランチ
 
-TBD
+以下のブランチは、本セッションのスライドの説明と対応しています。
+コードを見ながらスライドを確認したいときにご活用ください。
 
-- master:  
-  フォーク元のmasterブランチです。
+- [droidkaigi/step0](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step0)
+- [droidkaigi/step0](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step0)
+- [droidkaigi/step1](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step1)
+- [droidkaigi/step2](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step2)
+- [droidkaigi/step3](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step3)
+- [droidkaigi/step4](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step4)
+- [droidkaigi/step5](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/step5)
+- [droidkaigi/extra](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/droidkaigi/extra)
+
+なお、[master](https://github.com/sumio/android-sunflower-for-droidkaigi2019/tree/master)ブランチは、
+フォーク元のmasterブランチに対応しています。
 
 ## オリジナルのAndroid Sunflowerとの違い
 
